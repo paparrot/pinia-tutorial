@@ -5,8 +5,18 @@
       <h2>My favourite movies</h2>
     </header>
     <div class="tabs">
-      <button :class="['btn', {'btn_green': movieStore.activeTab === 1}]">Search</button>
-      <button :class="['btn', {'btn_green': movieStore.activeTab === 2}]">Favourite</button>
+      <button
+          @click="setTab(1)"
+          :class="['btn', {'btn_green': movieStore.activeTab === 1}]"
+      >
+        Search
+      </button>
+      <button
+          @click="setTab(2)"
+          :class="['btn', {'btn_green': movieStore.activeTab === 2}]"
+      >
+        Favourite
+      </button>
     </div>
     <div class="search" v-if="movieStore.activeTab === 1">
       Search
@@ -32,6 +42,10 @@
 import {useMovieStore} from "./stores/MovieStore.js";
 import Movie from "./components/Movie.vue";
 
+const setTab = (id) => {
+  movieStore.setActiveTab(id);
+}
+
 const movieStore = useMovieStore();
 </script>
 
@@ -42,10 +56,12 @@ const movieStore = useMovieStore();
   align-items: center;
   padding: 20px;
 }
+
 .header-logo {
   max-width: 50px;
   margin-right: 10px;
 }
+
 .btn {
   border: none;
   width: 100px;
@@ -56,12 +72,15 @@ const movieStore = useMovieStore();
   cursor: pointer;
   background: #efefef;
 }
+
 .btn:hover {
   opacity: 0.7;
 }
+
 .btn_green {
   background: #37df5c;
 }
+
 .tabs {
   display: flex;
   justify-content: center;
