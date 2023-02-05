@@ -26,7 +26,7 @@
       </div>
       <div class="movie-buttons" v-else>
         <button
-            @click="searchStore.addToUserMovies(movie)"
+            @click="onClickAddMovie(movie)"
             class="btn btn_green">
           Add
         </button>
@@ -36,11 +36,18 @@
 </template>
 
 <script setup>
+import {inject} from "vue";
 import {useMovieStore} from "../stores/MovieStore.js";
 import {useSearchStore} from "../stores/SearchStore.js";
+const swal = inject('$swal');
 
 const movieStore = useMovieStore();
 const searchStore = useSearchStore();
+
+const onClickAddMovie = (movie) => {
+  searchStore.addToUserMovies(movie);
+  swal(`Movie "${movie.title}" was added to your favourites`);
+}
 
 defineProps({
   movie: {

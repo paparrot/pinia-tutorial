@@ -23,6 +23,7 @@ export const useSearchStore = defineStore('searchStore', {
                 ...movie,
                 isWatched: false,
             })
+            this.movies = this.movies.filter(item => item.id !== movie.id)
         }
     }
 })
