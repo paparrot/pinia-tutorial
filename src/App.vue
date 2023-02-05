@@ -19,7 +19,7 @@
       </button>
     </div>
     <div class="search" v-if="movieStore.activeTab === 1">
-      Search
+      <Search></Search>
     </div>
     <div class="movies" v-else>
       <h3>Watched movies (total: {{ movieStore.watchedMovies.length }})</h3>
@@ -41,6 +41,7 @@
 <script setup>
 import {useMovieStore} from "./stores/MovieStore.js";
 import Movie from "./components/Movie.vue";
+import Search from "./components/Search.vue";
 
 const setTab = (id) => {
   movieStore.setActiveTab(id);
