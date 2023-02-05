@@ -2,33 +2,26 @@
   <div class="movie">
     <img
         :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`"
-        :alt="movie.title"
-        class="movie-img"
-    />
+        :alt="movie.original_title"
+        class="movie-img" />
     <div>
       <div class="movie-name">
-        {{ movie.oririnal_title }} ({{ movie.release_date }})
+        {{ movie.original_title }} ({{ movie.release_date }})
       </div>
-    </div>
-    <span class="movie-overview">
-      {{ movie.overview }}
-    </span>
-    <div class="movie-buttons">
-      <button class="btn movie-buttons-watched">
-        <span v-if="!movie.isWatched"> Watched </span>
-        <span v-else>Unwatched</span>
-      </button>
-      <button class="btn movie-buttons-delete">
-        <span >Delete</span>
-      </button>
+      <span class="movie-overview">{{ movie.overview }}</span>
+      <div class="movie-buttons">
+        <button class="btn movie-buttons-watched">
+          <span v-if="!movie.isWatched">Watched</span>
+          <span v-else>Unwatched</span>
+        </button>
+        <button class="btn movie-buttons-delete">Delete</button>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import {useMovieStore} from "../stores/MovieStore.js";
-
-const props = defineProps({
+defineProps({
   movie: {
     type: Object,
     required: true,
