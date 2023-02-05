@@ -1,4 +1,5 @@
 import {defineStore} from "pinia";
+import {useMovieStore} from "./MovieStore.js";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const API_ENDPOINT = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=`;
@@ -15,6 +16,13 @@ export const useSearchStore = defineStore('searchStore', {
             const data = await res.json();
             this.movies = data.results;
             this.loader = false;
+        },
+        addToUserMovies(movie) {
+            const movieStore = useMovieStore();
+            movieStore.movies.push({
+                ...movie,
+                isWatched: false,
+            })
         }
     }
 })

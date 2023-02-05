@@ -7,5 +7,5 @@ Simple movies app build with vue 3 and pinia as state manager.
 - [x] Getters
 - [x] Actions
 - [x] Async actions
-- [ ] Modules
+- [x] Modules
 - [ ] Composition API
